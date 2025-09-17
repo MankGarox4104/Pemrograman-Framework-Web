@@ -1,47 +1,60 @@
 <x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+    <div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-200 via-white to-blue-100">
+        <div class="w-full max-w-md bg-white shadow-2xl rounded-2xl p-8">
+            
+            {{-- Logo --}}
+            <div class="flex justify-center mb-4">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo Toko" class="h-16 w-16">
+            </div>
 
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
+            {{-- Teks Sambutan --}}
+            <h1 class="text-2xl font-bold text-center text-gray-700 mb-2">
+                Selamat Datang di <span class="text-blue-600">Toko MankGarox</span>
+            </h1>
+            <p class="text-center text-gray-500 mb-6">
+                Silakan login untuk melanjutkan
+            </p>
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            {{-- Login Form --}}
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+
+                {{-- Email --}}
+                <div>
+                    <label for="email" class="block font-medium text-gray-700">Email</label>
+                    <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus
+                        class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                </div>
+
+                {{-- Password --}}
+                <div class="mt-4">
+                    <label for="password" class="block font-medium text-gray-700">Password</label>
+                    <input id="password" type="password" name="password" required
+                        class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                </div>
+
+                {{-- Remember Me --}}
+                <div class="mt-4 flex items-center">
+                    <input id="remember_me" type="checkbox" name="remember"
+                        class="rounded border-gray-300 text-blue-600 shadow-sm focus:ring-blue-500">
+                    <label for="remember_me" class="ml-2 text-sm text-gray-600">Ingat saya</label>
+                </div>
+
+                {{-- Tombol Login --}}
+                <div class="mt-6">
+                    <button type="submit"
+                        class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg shadow hover:bg-blue-700 transition">
+                        Login
+                    </button>
+                </div>
+
+                {{-- Link Register --}}
+                <div class="mt-4 text-center">
+                    <a href="{{ route('register') }}" class="text-sm text-blue-600 hover:underline">
+                        Belum punya akun? Daftar sekarang
+                    </a>
+                </div>
+            </form>
         </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
+    </div>
 </x-guest-layout>
