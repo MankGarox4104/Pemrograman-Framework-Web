@@ -18,9 +18,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+use Illuminate\Support\Facades\Auth;
+
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    $user = Auth::user(); // ambil user yang sedang login
+    return view('dashboard', compact('user'));
+})->middleware('auth');
+
+Route::post('/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/');
+})->name('logout');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
