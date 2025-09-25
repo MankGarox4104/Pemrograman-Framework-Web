@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+
+Route::get('/products/{angka}', [ProductController::class, 'index']);
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +27,6 @@ Route::get('/admin/dashboard', function () {
 Route::get('/user/dashboard', function () {
     return "Ini halaman User";
 })->middleware(['auth', 'role:users']);
-
-Route::get('/products/{angka}', [ProductController::class, 'index'])
-    ->middleware(['auth', 'role:owner,admin']);
 
 Route::get('/', function () {
     return view('welcome');

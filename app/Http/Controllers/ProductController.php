@@ -8,8 +8,8 @@ class ProductController extends Controller
 {
     public function __construct()
     {
-        // hanya role owner dan admin yg bisa akses
-        $this->middleware('role:owner,admin');
+        // hanya bisa diakses oleh role owner
+        $this->middleware('owner');
     }
 
     public function index($angka)
