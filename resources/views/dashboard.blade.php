@@ -14,15 +14,29 @@
 
         {{-- Konten sesuai role --}}
         @if($user->role === 'admin')
-            <h4>Menu Admin</h4>
-            <a href="/products" class="btn btn-primary m-2">Kelola Produk</a>
-            <a href="/categories" class="btn btn-warning m-2">Kelola Kategori</a>
-            <a href="/users" class="btn btn-danger m-2">Kelola User</a>
+    <h4>Menu Admin</h4>
+    <a href="/products" class="btn btn-primary m-2">Kelola Produk</a>
+    <a href="/categories" class="btn btn-warning m-2">Kelola Kategori</a>
+    <a href="/users" class="btn btn-danger m-2">Kelola User</a>
+
+        @elseif($user->role === 'owner')
+    <h4>Menu Owner</h4>
+    <a href="/report" class="btn btn-info m-2">Lihat Laporan Penjualan</a>
+    <a href="/users" class="btn btn-dark m-2">Kelola Semua User</a>
+
         @else
-            <h4>Menu Pengguna</h4>
-            <a href="/products" class="btn btn-success m-2">Lihat Produk</a>
-            <a href="/categories" class="btn btn-info m-2">Lihat Kategori</a>
+    <h4>Menu Pengguna</h4>
+    <a href="/products" class="btn btn-success m-2">Lihat Produk</a>
+    <a href="/categories" class="btn btn-info m-2">Lihat Kategori</a>
         @endif
+
+        @if(session('error'))
+    <div style="background: red; color: white; padding:10px; border-radius:5px; margin-bottom:10px;">
+        {{ session('error') }}
+    </div>
+@endif
+
+
         <form action="{{ route('logout') }}" method="POST" class="mt-3">
     @csrf
     <button type="submit" class="btn btn-outline-danger">Logout</button>
