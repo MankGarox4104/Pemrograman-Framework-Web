@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
+
 Route::get('/products/{angka}', [ProductController::class, 'index']);
 
 
@@ -39,12 +40,6 @@ Route::get('/dashboard', function () {
     return view('dashboard', compact('user'));
 })->middleware('auth');
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::get('/uts', function () {
-        return view('admin.uts');
-    })->name('admin.uts');
-});
-
 
 Route::post('/logout', function () {
     Auth::logout();
@@ -59,5 +54,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+use App\Http\Controllers\UtsController;
+
+Route::get('/uts', [UtsController::class, 'index'])->name('uts.index');
+Route::get('/uts/web', [UtsController::class, 'utsWeb'])->name('uts.web');
+Route::get('/uts/database', [UtsController::class, 'utsDatabase'])->name('uts.database');
+
 
 require __DIR__.'/auth.php';
