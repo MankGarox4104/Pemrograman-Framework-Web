@@ -18,6 +18,7 @@
     <a href="/products" class="btn btn-primary m-2">Kelola Produk</a>
     <a href="/categories" class="btn btn-warning m-2">Kelola Kategori</a>
     <a href="/users" class="btn btn-danger m-2">Kelola User</a>
+    <a href="/uts" class="btn btn-success m-2">Halaman UTS</a>
 
         @elseif($user->role === 'owner')
     <h4>Menu Owner</h4>

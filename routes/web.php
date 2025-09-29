@@ -29,7 +29,7 @@ Route::get('/user/dashboard', function () {
 })->middleware(['auth', 'role:users']);
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
 use Illuminate\Support\Facades\Auth;
@@ -38,6 +38,13 @@ Route::get('/dashboard', function () {
     $user = Auth::user(); // ambil user yang sedang login
     return view('dashboard', compact('user'));
 })->middleware('auth');
+
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/uts', function () {
+        return view('admin.uts');
+    })->name('admin.uts');
+});
+
 
 Route::post('/logout', function () {
     Auth::logout();
