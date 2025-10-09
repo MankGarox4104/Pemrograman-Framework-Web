@@ -4,8 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
-
-Route::get('/products/{angka}', [ProductController::class, 'index']);
+Route::get('/produk/{nilai}', [ProductController::class, 'show']);
 
 
 /*

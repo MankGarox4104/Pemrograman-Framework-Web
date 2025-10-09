@@ -6,19 +6,21 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function __construct()
+    public function show($nilai)
     {
-        // hanya bisa diakses oleh role owner
-        $this->middleware('owner');
-    }
+        // Cek ganjil atau genap
+        if ($nilai % 2 == 0) {
+            $alertType = 'success';
+            $message = "Nilai $nilai adalah GENAP.";
+        } else {
+            $alertType = 'warning';
+            $message = "Nilai $nilai adalah GANJIL.";
+        }
 
-    public function index($angka)
-    {
-        $hasil = $angka + 10;
-
-        return view('products.index', [
-            'angkaAwal' => $angka,
-            'hasil' => $hasil
+        // Kirim ke view
+        return view('produk', [
+            'alertType' => $alertType,
+            'message' => $message
         ]);
     }
 }

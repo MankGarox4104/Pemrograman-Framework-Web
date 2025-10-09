@@ -5,7 +5,7 @@
 </head>
 <body>
     <header>
-        <h2>Header UTS</h2>
+        <h2>Ini Menu Halaman Utama UTS</h2>
         <nav>
             <a href="{{ route('uts.web') }}">Menu uts pemrograman web</a> |
             <a href="{{ route('uts.database') }}">Menu uts database</a>
@@ -17,7 +17,7 @@
     </main>
 
     <footer>
-        <p>Footer UTS</p>
+        <p>Bagian Bawah UTS</p>
     </footer>
 </body>
 </html>
