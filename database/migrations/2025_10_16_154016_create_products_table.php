@@ -9,13 +9,14 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
 {
-    Schema::create('uts', function (Blueprint $table) {
-        $table->id('uts_id');  // primary key
-        $table->string('nama_matkul');
-        $table->integer('jumlah_sks');
-        $table->text('keterangan')->nullable();
+    Schema::create('products', function (Blueprint $table) {
+        $table->id();
+        $table->string('nama');
+        $table->string('kategori');
+        $table->decimal('harga', 10, 2);
+        $table->integer('stok');
         $table->timestamps();
     });
 }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('uts');
+        Schema::dropIfExists('products');
     }
 };

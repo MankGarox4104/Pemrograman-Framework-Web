@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 
-Route::get('/produk/{nilai}', [ProductController::class, 'show']);
+Route::resource('products', ProductController::class);
 
 
 /*
